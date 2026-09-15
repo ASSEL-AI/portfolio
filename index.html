@@ -117,7 +117,7 @@ select {
   }
   .logo{ width:44px; height:44px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   nav ul{ list-style:none; display:flex; gap:6px; margin:0; padding:0; }
-  nav ul li a{ font-size:14px; color:var(--muted); padding:8px 16px; border-radius:100px; transition:.25s; }
+  nav ul li a{ font-size:14px; font-weight:700; color:var(--muted); align-items:center; padding:8px 16px; border-radius:100px; transition:.25s; }
   nav ul li a:hover{ color:var(--text); background:rgba(255,255,255,0.06); }
   .nav-cta{
     background:var(--card); color:var(--text); font-size:14px; font-weight:700;
@@ -236,7 +236,7 @@ select {
   body{
     margin:0;
     background:var(--bg);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Thmanyah Sans', system-ui, sans-serif;
   }
   .content{
     width:100%;
@@ -318,14 +318,21 @@ select {
     height:26px;
     flex-shrink:0;
   }
-
+  .modal-image1{
+    width: 50%;
+    height: auto;
+    border-radius: 12px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 
   .thumb-mock{
     font-family:'Thmanyah Sans', system-ui, sans-serif; color:var(--muted); font-weight:700; font-size:15px;
     text-align:center; padding:20px;
   }
-  .thumb-mock .mock-icon{ font-size:40px; margin-bottom:10px; }
+  .thumb-mock .mock-icon{ font-size:40px; margin-bottom:1px; }
   .project-body{ padding:0 12px 12px; }
   .project-top{ display:flex; align-items:flex-start; gap:20px; margin-bottom:14px; flex-wrap:wrap; }
   .project-icon{
@@ -506,7 +513,7 @@ select {
   .form-group label{ display:block; font-size:13px; font-weight:700; color:var(--text); margin-bottom:10px; }
   .form-group input, .form-group textarea{
     width:100%; background:var(--bg); border:1px  ; border-radius:12px;
-    padding:14px 16px; color:var(--text); font-family:inherit; font-size:14.5px; transition:.2s;
+    padding:14px 16px; color:var(--text); font-family:'Thmanyah Sans', system-ui, sans-serif; font-size:14.5px; transition:.2s;
   }
   .form-group input::placeholder, .form-group textarea::placeholder{ color:var(--muted-2); }
   .form-group input:focus, .form-group textarea:focus{ outline:none; border-color:var(--text); }
@@ -575,13 +582,13 @@ select {
     .stat{ border-bottom:1px  ; }
     .about-grid{ grid-template-columns:1fr; }
     .about-card{ position:static; }
-    .cert-grid{ grid-template-columns:1fr; }
+    .cert-grid{ grid-template-columns:1fr;}
   }
   @media (max-width:520px){
     .wrap{ padding:0 20px; }
     .hero{ padding-top:140px; }
     .project-top{ flex-direction:column; }
-    .modal-box{ padding:36px 22px 40px; }
+    .modal-box{ padding:32px 22px 40px;}
   }
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
@@ -598,7 +605,6 @@ select {
         <li><a href="#about">من أنا</a></li>
         <li><a href="#projects">أعمالي</a></li>
         <li><a href="#skills">مهاراتي</a></li>
-        <li><a href="#experience">كيف أعمل</a></li>
       </ul>
     </nav>
     <a href="#contact" class="nav-cta">تواصل معي</a>
@@ -778,7 +784,7 @@ select {
    target="_blank"
    class="c-social1"
    title="البريد الإلكتروني">
-  <img src="gmail-2026-32px.png" alt="Gmail">
+  <img src="gmail-svgrepo-com.svg" alt="Gmail">
 </a>
             </a>
             <a href="https://www.linkedin.com/in/asselalmalki" class="c-social" title="LinkedIn">
@@ -789,7 +795,7 @@ select {
      rel="noopener noreferrer"
      class="c-social"
      title="GitHub">
-    <img src="github-badge-64px.png" alt="GitHub">
+    <img src="github-142-svgrepo-com (4).svg" alt="GitHub">
   </a>
           </div>
         </div>
@@ -858,19 +864,33 @@ select {
     <br><br>
     <div class="modal-section">
       <h4>بيان المشكلة</h4>
-<p>تعاني العديد من المؤسسات من صعوبة إدارة مواقف السيارات بسبب زيادة عدد المركبات، مما يؤدي إلى ازدحام وإهدار الوقت وتكدس عند المداخل، ويؤثر سلبًا على تجربة المستخدم وكفاءة العمل.<a href="Raknah_Human Computer Interaction _Graduation Project _ 2026.pdf" target="_blank" class="pdf-link"> عرض ملف PDF</a></p>
+<p>تعاني العديد من المؤسسات من صعوبة إدارة مواقف السيارات بسبب زيادة عدد المركبات، مما يؤدي إلى ازدحام وإهدار الوقت وتكدس عند المداخل، ويؤثر سلبًا على تجربة المستخدم وكفاءة العمل.</p>
     </div>
 
     <div class="modal-section">
       <h4>نظرة عامة على الحل</h4>
-      <p><img src="solp.svg"class="modal-image"></p>
+      <p><img src="solp.svg" class="modal-image"></p>
     </div>
     <div class="modal-section">
       <h4>النتيجة</h4>
+      <img src="pr1.jpeg" class="modal-image1"></img>
+      <br>
       <ul>
         <li>الحصول على المركز الخامس في تحدي الابتكار في التطبيقات المنظم من معهد الابتكار وريادة الأعمال في جامعة أم القرى</li>
         <li>تم احتضان المشروع في حاضنة شركة وادي مكة.</li>
       </ul>
+      <div class="modal-section">
+        <br>
+        <br>
+      <h4>فريق ركـنـه</h4>
+      <ul>
+        <li>وسام ضيف الله العمري</li>
+        <li>أصيل محمد المالكي</li>
+        <li>غازي علي الجبيري</li>
+        <li>خالد فهد الزهراني</li>
+        <li>البراء محمد المسعودي</li>
+      </ul>
+    </div>
     </div>
   </div>
 </div>
@@ -924,7 +944,7 @@ select {
   <div class="modal-box">
     <button class="modal-close" data-close>×</button>
     <h2>هـمّـة (Himmah) : تطبيق يتيح للمستقل التقني عرض خدماته</h2>
-    <img src="hmh.svg" alt="" style="width:100%; max-width:600px; margin-bottom:20px; transform: translateX(-7%); border-radius:6px;">
+    <img src="hmh.svg" alt="" style="display:block; width:100%; max-width:600px; margin:0 auto 20px; border-radius:6px;">
     <div class="modal-section">
       <h4>المشكلة</h4>
       <p>يواجه المستقلون التقنيون صعوبة في الوصول إلى العملاء وعرض خدماتهم بطريقة واضحة واحترافية، بينما يجد العملاء صعوبة في الوصول إلى مستقلين موثوقين يمتلكون المهارات المناسبة لاحتياجاتهم. لذلك تم إنشاء تطبيق همّة ليكون منصة تجمع الطرفين في مكان واحد، وتسهّل عرض الخدمات، والوصول إلى الكفاءات التقنية، وتنفيذ المشاريع بطريقة أكثر سهولة وتنظيماً.</p>
