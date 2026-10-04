@@ -113,7 +113,7 @@ select {
     padding:20px 0;
   }
   .nav-inner{
-    max-width:var(--maxw); margin:0 auto; padding:0 32px;
+    width:calc( 100% - 60px); margin:0 auto; padding:0 32px;
     display:flex; align-items:center; justify-content:space-between;
     background:rgba(17,17,17,0.75);
     backdrop-filter: blur(16px);
@@ -139,9 +139,9 @@ select {
     pointer-events:none; z-index:0; overflow:hidden;
   }
   .hero-glow::before{
-    content:""; position:absolute; top:-340px; left:50%;
-    width:1100px; height:760px; transform:translateX(-50%);
-    background:radial-gradient(ellipse at center, rgba(0,122,255,0.55) 0%, rgba(0,122,255,0.22) 38%, rgba(0,122,255,0) 70%);
+    content:""; position:absolute; top:-370px; left:50%;
+    width:1390px; height:760px; transform:translateX(-50%);
+    background:radial-gradient(ellipse at center, rgba(0,122,205,0.55) 0%, rgba(0,122,255,0.22) 38%, rgba(0,122,255,0) 70%);
     filter:blur(40px);
     animation:glowPulse 6s ease-in-out infinite;
   }
@@ -166,6 +166,17 @@ select {
   .badge::before{
     content:""; width:8px; height:8px; border-radius:50%; background:var(--text);
     box-shadow:0 0 0 4px rgba(242,241,238,0.15);
+  }
+
+  .nav-inner{
+    width:calc( 100% - 40px); margin:0 auto; padding:0 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(17,17,17,0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px  ;
+    border-radius:100px;
+    padding:10px 12px 10px 22px;
   }
   .hero h1{ font-size:clamp(48px, 9vw, 104px); line-height:1.05; }
   .hero h1 .last{ color:var(--text); }
