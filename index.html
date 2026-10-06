@@ -156,7 +156,17 @@ select {
   @media (max-width:700px){
     .hero-glow::before{ width:700px; height:520px; top:-240px; }
   }
-  .hero{ padding:170px 0 60px; text-align:center; position:relative; z-index:1; }
+  .hero{
+    padding:150px 32px 60px; position:relative; z-index:1;
+    display:flex; flex-direction:row-reverse; /* RTL: العنصر الأول (الروبوت) يمين، النص يساره */
+    align-items:center; justify-content:space-between; gap:40px;
+  }
+  .hero-text{ flex:1 1 0; min-width:0; text-align:right; }
+  .hero-visual{ flex:0 0 auto; width:min(46%, 540px); display:flex; justify-content:center; }
+  /* ROBOT WIDGET */
+  .robot-head{ position:relative; width:100%; aspect-ratio:1 / 1; }
+  .robot-head canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; background:transparent; pointer-events:none; }
+  .robot-head .robot-fallback{ position:absolute; inset:0; display:grid; place-items:center; font-size:13px; opacity:.6; text-align:center; padding:16px; }
   .badge{
     display:inline-flex; align-items:center; gap:8px;
     border:1px  ; background:var(--card);
@@ -178,16 +188,16 @@ select {
     border-radius:100px;
     padding:10px 12px 10px 22px;
   }
-  .hero h1{ font-size:clamp(48px, 9vw, 104px); line-height:1.05; }
+  .hero h1{ font-size:clamp(40px, 6.1vw, 88px); line-height:1.1; }
   .hero h1 .last{ color:var(--text); }
-  .hero-role{ color:var(--accent); font-size:clamp(16px,2vw,20px); margin-top:18px; font-weight:500; }
-  .hero-desc{ color:var(--muted); font-size:17px; line-height:1.9; max-width:640px; margin:26px auto 0; }
-  .hero-actions{ display:flex; gap:14px; justify-content:center; margin-top:38px; flex-wrap:wrap; }
+  .hero-role{ color:var(--accent); font-size:clamp(16px,2vw,20px); margin-top:25px; font-weight:600; }
+  .hero-desc{ color:var(--muted); font-size:16px; line-height:1.9; max-width:520px; margin:26px 0 0; }
+  .hero-actions{ display:flex; gap:14px; justify-content:flex-start; margin-top:38px; flex-wrap:wrap; }
   .btn-primary{
-    display:inline-block; background:var(--card); color:var(--text); font-weight:700; font-size:15px;
+    display:inline-block; background:var(--card-hover); color:var(--text); font-weight:700; font-size:15px;
     padding:15px 30px; border-radius:100px; transition:.25s; border:1px  ;
   }
-  .btn-primary:hover{ background:var(--card-hover); transform:translateY(-2px); }
+  .btn-primary:hover{ background:var(--card); transform:translateY(-2px); }
   .btn-secondary{
     display:inline-block; background:transparent; color:var(--text); font-weight:600; font-size:15px;
     padding:15px 30px; border-radius:100px; border:1px  ; transition:.25s;
@@ -632,9 +642,16 @@ select {
     .about-card{ position:static; }
     .cert-grid{ grid-template-columns:1fr;}
   }
+  @media (max-width:820px){
+    .hero{ flex-direction:column; text-align:center; gap:10px; padding-top:130px; }
+    .hero-visual{ width:min(78vw, 380px); }
+    .hero-text{ text-align:center; }
+    .hero-desc{ margin-left:auto; margin-right:auto; }
+    .hero-actions{ justify-content:center; }
+  }
   @media (max-width:520px){
     .wrap{ padding:0 20px; }
-    .hero{ padding-top:140px; }
+    .hero{ padding:130px 20px 40px; }
     .project-top{ flex-direction:column; }
     .modal-box{ padding:32px 22px 40px;}
   }
@@ -660,17 +677,22 @@ select {
 </header>
 
 <main>
-
   <div class="hero-glow" aria-hidden="true"></div>
 
   <section class="hero wrap">
-    <h1>أصيل المالـكي</h1>
-    <p class="hero-role">UI/UX Designer · Web Developer</p>
-    <p class="hero-desc">
-      خريج علوم حاسب من جامعة أم القرى. أصمم تجارب رقمية تحل مشاكل حقيقية.
-    </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-primary">استعرض أعمالي</a>
+    <div class="hero-visual">
+      <div class="robot-head" data-robot-head role="img" aria-label="رأس روبوت ثلاثي الأبعاد يتتبع حركة المؤشر"></div>
+    </div>
+
+    <div class="hero-text">
+      <h1>أصيل المالـكي</h1>
+      <p class="hero-role">UI/UX Designer · Web Developer</p>
+      <p class="hero-desc">
+        خريج علوم حاسب من جامعة أم القرى. أصمم تجارب رقمية تحل مشاكل حقيقية.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">استعرض أعمالي</a>
+      </div>
     </div>
   </section>
 
@@ -685,7 +707,7 @@ select {
         <h3>نبذة سريعة</h3>
         <div class="about-stat-row"><span class="val">أم القرى</span><span class="lbl">الجامعة</span></div>
         <div class="about-stat-row"><span class="val">علوم الحاسب</span><span class="lbl">التخصص</span></div>
-        <div class="about-stat-row"><span class="val">مكة المكرمة</span><span class="lbl">التدريب</span></div>
+        <div class="about-stat-row"><span class="val">عون التقنية</span><span class="lbl">التدريب</span></div>
         <div class="about-stat-row"><span class="val">ركـنـه</span><span class="lbl">مشروع التخرج</span></div>
       </div>
 
@@ -1164,6 +1186,577 @@ const group = tools.map(createCard).join("");
 // نسختان متتاليتان بدون فراغ
 // 4 نسخ (عدد زوجي) لتغطية الشاشات العريضة، والحركة تنتقل بمقدار 50% = نسختان بالضبط
 row1.innerHTML = group + group + group + group;
+</script>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
+
+/* ---------------------------------------------------------------------
+   Small math helpers
+   --------------------------------------------------------------------- */
+const TAU = Math.PI * 2;
+const clamp = THREE.MathUtils.clamp;
+const lerp = THREE.MathUtils.lerp;
+const sgnpow = (v, e) => Math.sign(v) * Math.pow(Math.abs(v), e);
+
+/** Critically-ish damped spring used for all head / eye / antenna motion. */
+class Spring {
+  constructor(k = 120, d = 14, x = 0) { this.k = k; this.d = d; this.x = x; this.v = 0; }
+  step(target, h) {
+    const a = (target - this.x) * this.k - this.v * this.d;
+    this.v += a * h;
+    this.x += this.v * h;
+    return this.x;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Geometry builders (all procedural → zero download weight)
+   --------------------------------------------------------------------- */
+
+/** Superellipsoid: a soft, rounded "squircle" volume — the helmet shape. */
+function superEllipsoid(a, b, c, e1, e2, wSeg = 96, hSeg = 64) {
+  const g = new THREE.SphereGeometry(1, wSeg, hSeg);
+  const p = g.attributes.position;
+  for (let i = 0; i < p.count; i++) {
+    const x = p.getX(i), y = p.getY(i), z = p.getZ(i);
+    const lat = Math.asin(clamp(y, -1, 1));
+    const lon = Math.atan2(x, z);
+    const cl = Math.cos(lat);
+    p.setXYZ(
+      i,
+      a * sgnpow(cl, e1) * sgnpow(Math.sin(lon), e2),
+      b * sgnpow(Math.sin(lat), e1),
+      c * sgnpow(cl, e1) * sgnpow(Math.cos(lon), e2)
+    );
+  }
+  g.deleteAttribute('normal');
+  g.deleteAttribute('uv');
+  const merged = mergeVertices(g, 1e-4);   // weld seam → smooth normals
+  merged.computeVertexNormals();
+  return merged;
+}
+
+/** Front-surface height z(x, y) of a superellipsoid (exact implicit solve). */
+function makeSurfZ(a, b, c, e1, e2) {
+  return (x, y) => {
+    const S = Math.pow(Math.max(0, 1 - Math.pow(Math.abs(y / b), 2 / e1)), e1 / e2);
+    const d = Math.max(0, S - Math.pow(Math.abs(x / a), 2 / e2));
+    return c * Math.pow(d, e2 / 2);
+  };
+}
+
+/** Point on a squircle outline |x/a|^p + |y/b|^p = 1 at angle t. */
+const squircle = (a, b, t, p) => ({
+  x: a * sgnpow(Math.cos(t), 2 / p),
+  y: b * sgnpow(Math.sin(t), 2 / p),
+});
+
+/** Glossy visor glass: a squircle grid that hugs the helmet surface. */
+function screenGeometry(a, b, cy, p, surfZ, lift, n = 72) {
+  const pos = [], idx = [];
+  for (let j = 0; j <= n; j++) {
+    const v = -1 + (2 * j) / n;
+    for (let i = 0; i <= n; i++) {
+      const u = -1 + (2 * i) / n;
+      const m = Math.max(Math.abs(u), Math.abs(v));
+      const nrm = Math.pow(Math.pow(Math.abs(u), p) + Math.pow(Math.abs(v), p), 1 / p);
+      const f = nrm === 0 ? 0 : m / nrm;
+      const x = u * f * a, y = v * f * b + cy;
+      pos.push(x, y, surfZ(x, y) + lift);
+    }
+  }
+  for (let j = 0; j < n; j++) {
+    for (let i = 0; i < n; i++) {
+      const A = j * (n + 1) + i, B = A + 1, C = A + (n + 1), D = C + 1;
+      idx.push(A, B, C, B, D, C);
+    }
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return g;
+}
+
+/** Raised, bevelled frame around the visor (hard inner lip, soft outer fall-off). */
+function bezelGeometry({ ia, ib, oa, ob, cy, p, H, surfZ, lift, N = 192, M = 18 }) {
+  const prof = [{ s: 0, h: lift }, { s: 0, h: H }];
+  for (let k = 1; k <= M; k++) {
+    const s = k / M;
+    prof.push({ s, h: H * Math.pow(Math.max(0, 1 - Math.pow(s, 2.2)), 0.8) });
+  }
+  const P = prof.length, pos = [], idx = [];
+  for (let i = 0; i < N; i++) {
+    const t = (i / N) * TAU;
+    const I = squircle(ia, ib, t, p), O = squircle(oa, ob, t, p);
+    for (const { s, h } of prof) {
+      const x = lerp(I.x, O.x, s), y = lerp(I.y, O.y, s) + cy;
+      pos.push(x, y, surfZ(x, y) + h);
+    }
+  }
+  for (let i = 0; i < N; i++) {
+    const i2 = (i + 1) % N;
+    for (let k = 0; k < P - 1; k++) {
+      const A = i * P + k, B = A + 1, C = i2 * P + k, D = i2 * P + k + 1;
+      idx.push(A, B, C, B, D, C);
+    }
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return g;
+}
+
+/** Slightly rounded diamond used for the eyes. */
+function roundedDiamondGeometry(halfSide, r) {
+  const h = halfSide, s = new THREE.Shape();
+  s.moveTo(-h + r, -h);
+  s.lineTo(h - r, -h);  s.quadraticCurveTo(h, -h, h, -h + r);
+  s.lineTo(h, h - r);   s.quadraticCurveTo(h, h, h - r, h);
+  s.lineTo(-h + r, h);  s.quadraticCurveTo(-h, h, -h, h - r);
+  s.lineTo(-h, -h + r); s.quadraticCurveTo(-h, -h, -h + r, -h);
+  const g = new THREE.ShapeGeometry(s, 6);
+  g.rotateZ(Math.PI / 4);
+  return g;
+}
+
+/* ---------------------------------------------------------------------
+   Procedural textures
+   --------------------------------------------------------------------- */
+function diamondGlowTexture() {
+  const c = document.createElement('canvas');
+  c.width = c.height = 256;
+  const g = c.getContext('2d');
+  g.translate(128, 128);
+  g.shadowColor = 'rgba(20,130,255,1)';
+  g.shadowBlur = 46;
+  g.fillStyle = 'rgba(20,130,255,0.9)';
+  for (let i = 0; i < 3; i++) {
+    g.beginPath(); g.moveTo(0, -62); g.lineTo(62, 0); g.lineTo(0, 62); g.lineTo(-62, 0); g.closePath(); g.fill();
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+function radialGlowTexture() {
+  const c = document.createElement('canvas');
+  c.width = c.height = 128;
+  const g = c.getContext('2d');
+  const grad = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  grad.addColorStop(0, 'rgba(80,190,255,1)');
+  grad.addColorStop(0.35, 'rgba(20,130,255,0.45)');
+  grad.addColorStop(1, 'rgba(10,80,255,0)');
+  g.fillStyle = grad; g.fillRect(0, 0, 128, 128);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+/* ---------------------------------------------------------------------
+   Studio environment for reflections (generated in-memory, no HDR file)
+   --------------------------------------------------------------------- */
+function buildEnvironment(renderer) {
+  const env = new THREE.Scene();
+  env.add(new THREE.Mesh(
+    new THREE.BoxGeometry(40, 40, 40),
+    new THREE.MeshBasicMaterial({ color: 0x04060c, side: THREE.BackSide })
+  ));
+  const panel = (w, h, pos, color, power) => {
+    const m = new THREE.Mesh(
+      new THREE.PlaneGeometry(w, h),
+      new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(power), side: THREE.DoubleSide })
+    );
+    m.position.set(...pos);
+    m.lookAt(0, 0, 0);
+    env.add(m);
+  };
+  panel(18, 6, [0, 16, 6], 0xffffff, 3.2);     // top softbox → visor highlights
+  panel(5, 20, [-17, 2, 4], 0xcfd6e4, 2.5);      // left blue strip
+  panel(5, 20, [17, 2, 4], 0xcfd6e4, 2.5);       // right blue strip
+  panel(14, 5, [0, -12, 6], 0x9aa3b5, 1.5);    // under-glow
+  panel(10, 10, [0, 3, 18], 0xdfe9ff, 1.1);    // soft front fill
+  panel(8, 3, [-8, 9, -14], 0xdfe6f2, 2.5);      // back rim
+  const pm = new THREE.PMREMGenerator(renderer);
+  const rt = pm.fromScene(env, 0.035);
+  pm.dispose();
+  env.traverse(o => { if (o.isMesh) { o.geometry.dispose(); o.material.dispose(); } });
+  return rt;
+}
+
+/* ---------------------------------------------------------------------
+   Fresnel rim glow injected into MeshPhysicalMaterial (cheap, no post-fx)
+   --------------------------------------------------------------------- */
+function addRim(material, rimUniform, color) {
+  material.onBeforeCompile = (shader) => {
+    shader.uniforms.uRim = rimUniform;
+    shader.uniforms.uRimColor = { value: new THREE.Color(color) };
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nuniform float uRim;\nuniform vec3 uRimColor;')
+      .replace(
+        '#include <emissivemap_fragment>',
+        `#include <emissivemap_fragment>
+         float rimF = pow(1.0 - saturate(dot(normalize(normal), normalize(vViewPosition))), 2.6);
+         totalEmissiveRadiance += uRimColor * rimF * uRim;`
+      );
+  };
+  return material;
+}
+
+/* =====================================================================
+   createRobotHead(container, options) → { destroy() }
+   ===================================================================== */
+export function createRobotHead(container, opts = {}) {
+  const options = Object.assign({ maxYaw: 0.42, maxPitch: 0.24 }, opts);
+  const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0.4 : 1;
+
+  /* ---- renderer ---- */
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+  } catch (err) {
+    const f = document.createElement('div');
+    f.className = 'robot-fallback';
+    f.textContent = 'WebGL is not available on this device.';
+    container.appendChild(f);
+    return { destroy() { f.remove(); } };
+  }
+  renderer.setClearColor(0x000000, 0);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  container.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const envRT = buildEnvironment(renderer);
+  scene.environment = envRT.texture;
+
+  const camera = new THREE.PerspectiveCamera(28, 1, 1, 120);
+
+  /* ---- lights (env does most of the work) ---- */
+  const key = new THREE.DirectionalLight(0xc4d8ff, 1.4);
+  key.position.set(-4, 8, 10);
+  scene.add(key);
+  const rimL = new THREE.PointLight(0xffffff, 120, 30, 2); rimL.position.set(-10, 2, -4); scene.add(rimL);
+  const rimR = new THREE.PointLight(0xffffff, 120, 30, 2); rimR.position.set(10, 2, -4); scene.add(rimR);
+  const under = new THREE.PointLight(0xffffff, 50, 25, 2); under.position.set(0, -9, 6); scene.add(under);
+
+  /* ---- shared state for interaction-driven material tweaks ---- */
+  const rimU = { value: 0 };   // blue rim glow disabled
+  const disposables = [envRT];
+  const track = (o) => { disposables.push(o); return o; };
+
+  /* ---- materials ---- */
+  const shellMat = track(addRim(new THREE.MeshPhysicalMaterial({
+    color: 0x80838a, metalness: 0.55, roughness: 0.38,
+    clearcoat: 1, clearcoatRoughness: 0.08, envMapIntensity: 1.0,
+  }), rimU, 0x1a62ff));
+
+  const bezelMat = track(addRim(new THREE.MeshPhysicalMaterial({
+    color: 0x5d6068, metalness: 0.6, roughness: 0.3,
+    clearcoat: 1, clearcoatRoughness: 0.04, envMapIntensity: 1.1,
+  }), rimU, 0x1a62ff));
+
+  const visorMat = track(new THREE.MeshPhysicalMaterial({
+    color: 0x010206, metalness: 0.0, roughness: 0.05,
+    clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 2.2,
+  }));
+
+  const earMat = track(addRim(new THREE.MeshPhysicalMaterial({
+    color: 0x6d7078,
+    metalness: 0.55, roughness: 0.32, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.2,
+  }), rimU, 0x3a9bff));
+
+  const stripMat = track(new THREE.MeshBasicMaterial({ color: 0x007aff, toneMapped: false }));
+
+  const stemMat = track(new THREE.MeshPhysicalMaterial({
+    color: 0x000000, emissive: 0x000000, emissiveIntensity: 0.3, toneMapped: false,
+    metalness: 0.25, roughness: 0.3, clearcoat: 1, envMapIntensity: 0.8,
+  }));
+
+  const ballMat = track(new THREE.MeshPhysicalMaterial({
+    color: 0x007aff, emissive: 0x007aff, emissiveIntensity: 0.5, toneMapped: false,
+    metalness: 0, roughness: 0.15, clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 0.8,
+  }));
+
+  const eyeColorBase = new THREE.Color('#007aff');
+  const eyeColorHot = new THREE.Color('#2e92ff');
+  const eyeMat = track(new THREE.MeshBasicMaterial({
+    color: eyeColorBase.clone(), toneMapped: false, depthTest: false,
+  }));
+
+  /* ---- rig → head hierarchy ---- */
+  const rig = new THREE.Group();   // floating / bouncing
+  const head = new THREE.Group();  // rotating
+  rig.add(head);
+  scene.add(rig);
+
+  /* ---- helmet shell ---- */
+  const A = 4.35, B = 3.85, C = 3.4, E1 = 0.7, E2 = 0.7;
+  const shellGeo = track(superEllipsoid(A, B, C, E1, E2, 96, 64));
+  head.add(new THREE.Mesh(shellGeo, shellMat));
+  const surf = makeSurfZ(A, B, C, E1, E2);
+
+  /* ---- face plate: bezel + glossy visor ---- */
+  const VCY = -0.2, VP = 4;                 // visor centre-Y & squircle exponent
+  const VA = 3.85, VB = 2.75;               // visor half-size
+  const bezel = new THREE.Mesh(track(bezelGeometry({
+    ia: VA, ib: VB, oa: VA + 0.25, ob: VB + 0.25, cy: VCY, p: VP, H: 0.17, surfZ: surf, lift: 0.04,
+  })), bezelMat);
+  head.add(bezel);
+  const visor = new THREE.Mesh(track(screenGeometry(VA, VB, VCY, VP, surf, 0.04)), visorMat);
+  head.add(visor);
+
+  /* ---- eyes ---- */
+  const EYE_X = 1.35, EYE_Y = -0.63;
+  const eyeGeo = track(roundedDiamondGeometry(0.93, 0.06));
+  const makeEye = (side) => {
+    const g = new THREE.Group();
+    const core = new THREE.Mesh(eyeGeo, eyeMat);
+    core.renderOrder = 11;
+    core.raycast = () => {};
+    g.add(core);
+    g.userData.baseX = side * EYE_X;
+    g.position.set(g.userData.baseX, EYE_Y, surf(side * EYE_X, EYE_Y) + 0.1);
+    head.add(g);
+    return g;
+  };
+  const eyeL = makeEye(-1), eyeR = makeEye(1);
+
+  /* ---- ears (side panels) ---- */
+  const earGeo = track(superEllipsoid(0.62, 1.78, 1.45, 0.75, 0.8, 56, 40));
+  const earSurf = makeSurfZ(0.62, 1.78, 1.45, 0.75, 0.8);
+  const EAR_X = 4.72, EAR_Y = -0.42;
+  for (const side of [-1, 1]) {
+    const ear = new THREE.Mesh(earGeo, earMat);
+    ear.position.set(side * EAR_X, EAR_Y, 0);
+    head.add(ear);
+
+    const pts = [];
+    for (let i = 0; i <= 18; i++) {
+      const y = lerp(-1.35, 1.35, i / 18);
+      pts.push(new THREE.Vector3(side * (EAR_X + 0.24), EAR_Y + y, earSurf(0.24, y) * 0.985));
+    }
+    const strip = new THREE.Mesh(
+      track(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 40, 0.13, 10, false)), stripMat
+    );
+    head.add(strip);
+  }
+
+  /* ---- antenna ---- */
+  const baseProfile = [
+    new THREE.Vector2(0.0, 0.0), new THREE.Vector2(0.78, 0.0), new THREE.Vector2(0.8, 0.06),
+    new THREE.Vector2(0.7, 0.2), new THREE.Vector2(0.45, 0.26), new THREE.Vector2(0.0, 0.28),
+  ];
+  const antBase = new THREE.Mesh(track(new THREE.LatheGeometry(baseProfile, 48)), bezelMat);
+  antBase.position.set(-0.05, 3.72, 0);
+  head.add(antBase);
+
+  const antenna = new THREE.Group();            // pivot at the stem root
+  antenna.position.set(-0.3, 3.95, 0);
+  const stemCurve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0.5, 0), new THREE.Vector3(0.2, 0.95, 0),
+    new THREE.Vector3(0.6, 1.2, 0), new THREE.Vector3(0.91, 1.3, 0),
+  ]);
+  antenna.add(new THREE.Mesh(track(new THREE.TubeGeometry(stemCurve, 56, 0.17, 14, false)), stemMat));
+  const ball = new THREE.Mesh(track(new THREE.SphereGeometry(0.65, 48, 32)), ballMat);
+  ball.position.set(0.91, 1.3, 0);
+  antenna.add(ball);
+  head.add(antenna);
+
+  /* ---- sizing / camera framing ---- */
+  function resize() {
+    const w = Math.max(1, container.clientWidth), h = Math.max(1, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    const t = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    const dist = Math.max(5.7 / t, 6.2 / (t * camera.aspect));
+    camera.position.set(0, 1.05, dist);
+    camera.lookAt(0, 1.05, 0);
+    camera.updateProjectionMatrix();
+  }
+  const ro = new ResizeObserver(resize);
+  ro.observe(container);
+  resize();
+
+  /* ---- interaction state ---- */
+  const raycaster = new THREE.Raycaster();
+  const ndc = new THREE.Vector2();
+  let px = 0, py = 0, havePointer = false, pointerActive = false, pointerType = 'mouse';
+  let lastMove = -1e9, moved = false, hoverTarget = 0, hover = 0, pulse = 0, idleBlend = 1;
+  let releaseTimer = 0, down = null;
+
+  const yaw = new Spring(95, 15), pitch = new Spring(95, 15), roll = new Spring(150, 9);
+  const bounce = new Spring(170, 10);
+  const exL = new Spring(170, 16), eyL = new Spring(170, 16);
+  const exR = new Spring(135, 14), eyR = new Spring(135, 14);
+  const sway = new Spring(60, 5);
+
+  function hitTest(cx, cy) {
+    const r = renderer.domElement.getBoundingClientRect();
+    if (!r.width || !r.height) return false;
+    ndc.set(((cx - r.left) / r.width) * 2 - 1, -(((cy - r.top) / r.height) * 2 - 1));
+    raycaster.setFromCamera(ndc, camera);
+    return raycaster.intersectObjects(head.children, true).length > 0;
+  }
+
+  function setPointer(e) {
+    px = e.clientX; py = e.clientY; havePointer = true;
+    pointerType = e.pointerType || 'mouse';
+    pointerActive = true; moved = true; lastMove = performance.now();
+    clearTimeout(releaseTimer);
+  }
+  function release() { pointerActive = false; hoverTarget = 0; moved = false; }
+
+  function react() {
+    pulse = 1;
+    bounce.v += 3.4 * calm;
+    roll.v += (Math.random() < 0.5 ? -1 : 1) * 2.4 * calm;
+    pitch.v += 0.8 * calm;
+  }
+
+  const onMove = (e) => setPointer(e);
+  const onDown = (e) => {
+    setPointer(e);
+    down = { x: e.clientX, y: e.clientY, t: performance.now() };
+    if (pointerType !== 'mouse') hoverTarget = hitTest(e.clientX, e.clientY) ? 1 : 0;
+  };
+  const onUp = (e) => {
+    setPointer(e);
+    if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) < 12 && performance.now() - down.t < 700) {
+      if (hitTest(e.clientX, e.clientY)) react();
+    }
+    down = null;
+    if (e.pointerType !== 'mouse') { releaseTimer = setTimeout(release, 1200); hoverTarget = 0; }
+  };
+  const onCancel = () => { down = null; releaseTimer = setTimeout(release, 600); };
+  const onLeave = (e) => { if (!e.relatedTarget) release(); };
+
+  window.addEventListener('pointermove', onMove, { passive: true });
+  window.addEventListener('pointerdown', onDown, { passive: true });
+  window.addEventListener('pointerup', onUp, { passive: true });
+  window.addEventListener('pointercancel', onCancel, { passive: true });
+  document.documentElement.addEventListener('mouseleave', release);
+  window.addEventListener('blur', release);
+  document.addEventListener('mouseout', onLeave);
+
+  /* ---- visibility gating (saves battery when off-screen) ---- */
+  let visible = true;
+  const io = new IntersectionObserver((en) => { visible = en[0].isIntersecting; });
+  io.observe(container);
+
+  /* ---- per-frame update ---- */
+  const tmpBase = new THREE.Vector3();
+  function update(dt, t, now) {
+    // pointer → normalised offsets from the robot's centre
+    let nx = 0, ny = 0;
+    if (havePointer && pointerActive) {
+      const r = container.getBoundingClientRect();
+      const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      nx = clamp((px - cx) / (window.innerWidth * 0.5), -1, 1);
+      ny = clamp(-(py - cy) / (window.innerHeight * 0.5), -1, 1);
+    }
+
+    // hover detection (mouse only, once per frame when the cursor moved)
+    if (moved && pointerType === 'mouse' && pointerActive) {
+      hoverTarget = hitTest(px, py) ? 1 : 0;
+      moved = false;
+    }
+    hover += (hoverTarget - hover) * (1 - Math.exp(-dt * 8));
+    pulse *= Math.exp(-dt * 3.2);
+
+    // idle blend: robot relaxes into floating when nothing is happening
+    const idleTarget = (!pointerActive || now - lastMove > 4000) ? 1 : 0;
+    idleBlend += (idleTarget - idleBlend) * (1 - Math.exp(-dt * 0.9));
+
+    const idleYaw = Math.sin(t * 0.45) * 0.06 * idleBlend * calm;
+    const idlePitch = Math.sin(t * 0.37 + 1.0) * 0.03 * idleBlend * calm;
+
+    const tYaw = nx * options.maxYaw * calm + idleYaw;
+    const tPitch = -ny * options.maxPitch * calm + idlePitch;
+    const tEx = nx * 0.34 * calm + Math.sin(t * 0.6) * 0.08 * idleBlend * calm;
+    const tEy = ny * 0.22 * calm + Math.sin(t * 0.5 + 2.0) * 0.05 * idleBlend * calm;
+
+    // spring integration (2 sub-steps for stability)
+    const steps = 2, h = dt / steps;
+    for (let s = 0; s < steps; s++) {
+      yaw.step(tYaw, h); pitch.step(tPitch, h); roll.step(0, h); bounce.step(0, h);
+      exL.step(tEx, h); eyL.step(tEy, h);
+      exR.step(tEx * 0.94, h); eyR.step(tEy * 0.94, h);
+      sway.step(Math.sin(t * 1.2 - 1.0) * 0.06 * calm - yaw.v * 0.05 - bounce.v * 0.012, h);
+    }
+
+    // head transform
+    head.rotation.set(pitch.x, yaw.x, roll.x - yaw.x * 0.05, 'YXZ');
+    rig.position.set(yaw.x * 0.3, bounce.x + Math.sin(t * 1.2) * 0.1 * calm, 0);
+    const breathe = 1 + Math.sin(t * 1.2) * 0.005 * calm;
+    rig.scale.setScalar(breathe);
+
+    // eyes track independently inside the visor
+    eyeL.position.x = eyeL.userData.baseX + exL.x;  eyeL.position.y = EYE_Y + eyL.x;
+    eyeR.position.x = eyeR.userData.baseX + exR.x;  eyeR.position.y = EYE_Y + eyR.x;
+
+    // antenna secondary motion
+    antenna.rotation.z = sway.x;
+    antenna.rotation.x = Math.sin(t * 0.9 + 0.5) * 0.02 * calm;
+
+    // hover / click energy
+    const energy = hover * 0.35 + pulse * 0.6;
+    eyeMat.color.copy(eyeColorBase).lerp(eyeColorHot, clamp(energy, 0, 1));
+    const envI = 1 + hover * 0.45 + pulse * 0.3;
+    shellMat.envMapIntensity = envI;
+    bezelMat.envMapIntensity = 1.1 * envI;
+    earMat.envMapIntensity = 1.2 * envI;
+    visorMat.envMapIntensity = 2.2 * (1 + hover * 0.35);
+    container.classList.toggle('is-hover', hover > 0.5);
+  }
+
+  let raf = 0, last = performance.now(), time = 0;
+  function frame(now) {
+    raf = requestAnimationFrame(frame);
+    if (!visible || document.hidden) { last = now; return; }
+    const dt = Math.min((now - last) / 1000, 1 / 20);
+    last = now; time += dt;
+    update(dt, time, now);
+    renderer.render(scene, camera);
+  }
+  raf = requestAnimationFrame(frame);
+
+  function destroy() {
+    cancelAnimationFrame(raf);
+    clearTimeout(releaseTimer);
+    ro.disconnect(); io.disconnect();
+    window.removeEventListener('pointermove', onMove);
+    window.removeEventListener('pointerdown', onDown);
+    window.removeEventListener('pointerup', onUp);
+    window.removeEventListener('pointercancel', onCancel);
+    window.removeEventListener('blur', release);
+    document.documentElement.removeEventListener('mouseleave', release);
+    document.removeEventListener('mouseout', onLeave);
+    disposables.forEach(d => d.dispose && d.dispose());
+    renderer.dispose();
+    renderer.domElement.remove();
+  }
+
+  return { destroy, react };
+}
+
+/* Auto-init every [data-robot-head] element on the page */
+const instances = [...document.querySelectorAll('[data-robot-head]')].map(el => createRobotHead(el));
+window.robotHeads = instances;
 </script>
 
 </body>
